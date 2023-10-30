@@ -11,7 +11,6 @@ import { ImageService } from '../../services/image.service';
 @Component({
   selector: 'app-image-detail',
   templateUrl: './image-detail.component.html',
-  styleUrls: ['./image-detail.component.scss'],
 })
 export class ImageDetailComponent {
   @Input() currentImage: any;

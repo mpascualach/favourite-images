@@ -3,7 +3,7 @@ const multer = require("multer");
 const cors = require("cors");
 const path = require("path");
 
-const app = express();
+const server = express();
 const PORT = process.env.PORT || 3000;
 
 const storage = multer.diskStorage({
@@ -20,12 +20,12 @@ const upload = multer({ storage: storage });
 let images = [];
 let id = 0;
 
-app.use(express.json());
-app.use(cors());
+server.use(express.json());
+server.use(cors());
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+server.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.post("/upload", upload.single("image"), (req, res) => {
+server.post("/upload", upload.single("image"), (req, res) => {
   const { title } = req.body;
   const filePath = req.file.path;
   console.log(req.file.path);
@@ -34,11 +34,11 @@ app.post("/upload", upload.single("image"), (req, res) => {
   res.json({ message: "Image uploaded successfully!" });
 });
 
-app.get("/gallery", (req, res) => {
+server.get("/gallery", (req, res) => {
   res.json(images);
 });
 
-app.patch("/update/:id", (req, res) => {
+server.patch("/update/:id", (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
   const image = images.find((img) => img.id === +id);
@@ -50,12 +50,14 @@ app.patch("/update/:id", (req, res) => {
   }
 });
 
-app.delete("/delete/:id", (req, res) => {
+server.delete("/delete/:id", (req, res) => {
   const { id } = req.params;
   images = images.filter((img) => img.id !== +id);
   res.json({ message: "Image deleted successfully!" });
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = server;

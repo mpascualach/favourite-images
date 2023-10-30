@@ -11,7 +11,6 @@ import { ImageService } from '../services/image.service';
 @Component({
   selector: 'app-image-uploader',
   templateUrl: './image-uploader.component.html',
-  styleUrls: ['./image-uploader.component.scss'],
 })
 export class ImageUploaderComponent {
   @ViewChild('modal') modal!: ElementRef;
