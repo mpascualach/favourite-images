@@ -1,0 +1,23 @@
+<button class="btn btn-primary m-2" (click)="openModal()">Upload image</button>
+
+<dialog #modal class="modal">
+  <div class="modal-box flex flex-col gap-2">
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      id="fileInput"
+      class="file-input w-full"
+    />
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded image" />
+    <input
+      type="text"
+      placeholder="Title"
+      [(ngModel)]="imageTitle"
+      class="input input-bordered w-full"
+    />
+    <button class="btn btn-primary" (click)="onUpload()">Upload</button>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>

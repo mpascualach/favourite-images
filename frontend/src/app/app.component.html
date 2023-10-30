@@ -1,0 +1,5 @@
+<app-image-uploader (imageUploaded)="fetchImages()"></app-image-uploader>
+<app-image-gallery
+  [images]="images"
+  (imagesChanged)="fetchImages()"
+></app-image-gallery>

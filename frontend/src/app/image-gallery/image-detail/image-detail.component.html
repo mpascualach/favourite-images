@@ -1,0 +1,23 @@
+<dialog #modal class="modal">
+  <div class="modal-box" *ngIf="currentImage">
+    <img
+      [src]="'http://localhost:3000/' + currentImage.filePath"
+      alt="{{ currentImage.title }}"
+      class="w-full rounded-md"
+    />
+    <input
+      type="text"
+      [(ngModel)]="currentImage.title"
+      placeholder="Title"
+      class="input input-bordered w-full mt-4"
+    />
+    <div class="modal-action">
+      <button class="btn" (click)="closeModal()">Close</button>
+      <button class="btn btn-primary" (click)="updateImage()">Update</button>
+      <button class="btn btn-error" (click)="deleteImage()">Delete</button>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>

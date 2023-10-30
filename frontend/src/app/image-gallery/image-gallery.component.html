@@ -1,0 +1,20 @@
+<!-- image-gallery.component.html -->
+<div class="grid grid-cols-4 gap-4 ml-8 mt-4">
+  <div
+    *ngFor="let image of images"
+    class="bg-white p-4 rounded-lg shadow-lg hover:bg-slate-100 cursor-pointer"
+    (click)="openModal(image)"
+  >
+    <img
+      [src]="'http://localhost:3000/' + image.filePath"
+      alt="{{ image.title }}"
+      class="w-full rounded-md"
+    />
+    <div class="text-center mt-2 overflow-auto">{{ image.title }}</div>
+  </div>
+</div>
+
+<app-image-detail
+  [currentImage]="selectedImage"
+  (imagesChanged)="fetchImages()"
+></app-image-detail>
